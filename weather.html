@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Live Weather – Voyage Vista</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- Global styles ---------- */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    font-family:"Poppins",sans-serif;
+    background:linear-gradient(135deg,#1e1e2f,#111119,#2c2360);
+    background-size:400% 400%;
+    animation:gradientBG 12s ease infinite;
+    color:white;
+    overflow-x:hidden;
+}
+
+@keyframes gradientBG{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* Header */
+header{
+    text-align:center;
+    padding:30px;
+}
+header h1{
+    font-size:42px;
+    font-weight:700;
+    background:linear-gradient(45deg,#00c6ff,#7d2ae8);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.back-btn{
+    color:#00c6ff;
+    text-decoration:none;
+    font-size:18px;
+    display:inline-block;
+    margin-top:10px;
+}
+
+/* Main box */
+.weather-container{
+    width:90%;
+    max-width:900px;
+    margin:20px auto 50px;
+}
+.glass-card{
+    background:rgba(255,255,255,0.12);
+    border-radius:20px;
+    padding:25px;
+    border:1px solid rgba(255,255,255,0.25);
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+    backdrop-filter:blur(15px);
+    animation:floatCard 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatCard{
+    from{transform:translateY(0);}
+    to{transform:translateY(-10px);}
+}
+
+/* Search */
+.search-box{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+input{
+    flex:1;
+    padding:12px;
+    border-radius:12px;
+    border:none;
+    font-size:17px;
+    outline:none;
+    background:rgba(255,255,255,0.2);
+    color:white;
+    backdrop-filter:blur(10px);
+}
+input::placeholder{ color:#ddd; }
+
+.btn{
+    padding:12px 25px;
+    background:linear-gradient(45deg,#7d2ae8,#00c6ff);
+    border-radius:30px;
+    border:none;
+    color:white;
+    cursor:pointer;
+    font-size:17px;
+    transition:0.3s;
+    box-shadow:0 0 12px rgba(0,198,255,0.5);
+}
+.btn:hover{
+    transform:scale(1.07);
+    box-shadow:0 0 20px rgba(125,42,232,0.8);
+}
+
+/* Weather Text */
+.weather-output h2{
+    font-size:28px;
+    color:#00c6ff;
+    margin-bottom:10px;
+}
+
+.weather-box{
+    margin-top:15px;
+    padding:15px;
+    background:rgba(255,255,255,0.08);
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.15);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Live Weather Updates</h1>
+    <a href="new.html" class="back-btn">⬅ Back to Home</a>
+</header>
+
+<div class="weather-container">
+
+    <div class="glass-card">
+
+        <!-- Search -->
+        <div class="search-box">
+            <input type="text" id="place" placeholder="Enter a city name...">
+            <button class="btn" onclick="getWeather()">Search</button>
+        </div>
+
+        <!-- Results -->
+        <div class="weather-output" id="weather-output"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+const API_KEY = "YOUR_OPENWEATHER_API_KEY";
+
+// Fetch weather
+async function getWeather() {
+    const place = document.getElementById("place").value.trim();
+    if(!place){
+        alert("Enter a place name");
+        return;
+    }
+
+    const output = document.getElementById("weather-output");
+    output.innerHTML = "<p>Loading...</p>";
+
+    try {
+        // Current weather
+        const currentRes = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=${API_KEY}&units=metric`
+        );
+        const current = await currentRes.json();
+
+        // Forecast (next 3 hours)
+        const forecastRes = await fetch(
+            `https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${API_KEY}&units=metric`
+        );
+        const forecast = await forecastRes.json();
+
+        const next3hr = forecast.list[0];
+
+        output.innerHTML = `
+            <h2>📍 ${current.name}, ${current.sys.country}</h2>
+
+            <div class="weather-box">
+                <h3>🌤 Current Weather</h3>
+                <p><strong>Temperature:</strong> ${current.main.temp}°C</p>
+                <p><strong>Condition:</strong> ${current.weather[0].description}</p>
+                <p><strong>Humidity:</strong> ${current.main.humidity}%</p>
+                <p><strong>Wind Speed:</strong> ${current.wind.speed} m/s</p>
+            </div>
+
+            <div class="weather-box">
+                <h3>⏱ Next 3 Hours Forecast</h3>
+                <p><strong>Temperature:</strong> ${next3hr.main.temp}°C</p>
+                <p><strong>Condition:</strong> ${next3hr.weather[0].description}</p>
+                <p><strong>Expected Time:</strong> ${next3hr.dt_txt}</p>
+            </div>
+        `;
+    } catch (error) {
+        output.innerHTML = "<p>Error fetching weather. Check city name.</p>";
+    }
+}
+</script>
+
+</body>
+</html>

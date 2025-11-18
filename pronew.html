@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Profile – Voyage Vista</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- Global styles ---------- */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    font-family:"Poppins",sans-serif;
+    background:linear-gradient(135deg,#1e1e2f,#111119,#2c2360);
+    background-size:400% 400%;
+    animation:gradientBG 12s ease infinite;
+    color:white;
+    overflow-x:hidden;
+}
+
+@keyframes gradientBG{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* Header */
+header{
+    text-align:center;
+    padding:30px;
+}
+header h1{
+    font-size:42px;
+    font-weight:700;
+    background:linear-gradient(45deg,#00c6ff,#7d2ae8);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.back-btn{
+    color:#00c6ff;
+    text-decoration:none;
+    font-size:18px;
+    display:inline-block;
+    margin-top:10px;
+}
+
+/* Profile Container */
+.profile-container{
+    width:90%;
+    max-width:900px;
+    margin:20px auto 50px;
+}
+
+/* Glass card */
+.glass-card{
+    background:rgba(255,255,255,0.1);
+    border-radius:20px;
+    padding:25px;
+    margin-top:25px;
+    border:1px solid rgba(255,255,255,0.25);
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+    backdrop-filter:blur(15px);
+    animation:floatCard 4s ease-in-out infinite alternate;
+}
+@keyframes floatCard{
+    from{transform:translateY(0); }
+    to{transform:translateY(-10px);}
+}
+
+h2{
+    font-size:30px;
+    margin-bottom:15px;
+    color:#00c6ff;
+}
+
+.profile-info p{
+    font-size:19px;
+    margin:8px 0;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 30px;
+    background:linear-gradient(45deg,#7d2ae8,#00c6ff);
+    border-radius:30px;
+    text-decoration:none;
+    color:white;
+    font-size:18px;
+    transition:0.3s;
+    box-shadow:0 0 12px rgba(0,198,255,0.5);
+    border:none;
+}
+.btn:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 20px rgba(125,42,232,0.8);
+}
+
+/* Logout */
+.logout-container{
+    text-align:center;
+    margin-top:30px;
+}
+.logout-btn{
+    padding:12px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    color:white;
+    background:linear-gradient(45deg,#ff4d4d,#d60000);
+    cursor:pointer;
+    transition:0.3s;
+}
+.logout-btn:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 20px rgba(255,80,80,0.8);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Your Profile</h1>
+    <a href="new.html" class="back-btn">⬅ Back to Home</a>
+</header>
+
+<div class="profile-container">
+
+    <div class="glass-card">
+        <h2>👤 Profile Details</h2>
+        <div class="profile-info">
+            <p><strong>Name:</strong> User</p>
+            <p><strong>Email:</strong> user@voyagevista.com</p>
+            <a href="editpro.html" class="btn">Edit Profile</a>
+		
+        </div>
+    </div>
+
+    <div class="glass-card">
+        <h2>⭐ Saved Trips</h2>
+        <p>No saved trips yet.</p>
+    </div>
+
+    <div class="glass-card">
+        <h2>📜 Travel History</h2>
+        <p>No previous trips recorded.</p>
+    </div>
+
+    <div class="logout-container">
+        <button class="logout-btn">Logout</button>
+    </div>
+
+</div>
+
+</body>
+</html>

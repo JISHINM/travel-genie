@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Voyage Vista – AI Travel Companion</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* ---------- Global styles ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #1e1e2f, #111119, #2c2360);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ---------- Animated background ---------- */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ---------- Header ---------- */
+header {
+    padding: 25px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, #00c6ff, #7d2ae8);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* ---------- Floating Widgets ---------- */
+.floating-widget {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    animation: floatCard 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatCard {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-10px); }
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+/* ---------- Features Section ---------- */
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.feature-box {
+    width: 250px;
+    height: 160px;
+    padding: 20px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px);
+    border-radius: 18px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    transition: 0.3s;
+}
+
+.feature-box:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 0 25px rgba(0,198,255,0.4);
+}
+
+.feature-box h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #00c6ff;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    margin: 20px 10px;
+    background: linear-gradient(45deg, #7d2ae8, #00c6ff);
+    border-radius: 30px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: 0.4s;
+    box-shadow: 0 0 12px rgba(0,198,255,0.5);
+}
+
+.btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(125,42,232,0.8);
+}
+
+/* ---------- Footer ---------- */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 15px;
+    color: #bbb;
+    font-size: 14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Voyage Vista</h1>
+    <p>Your AI Powered Smart Travel Companion</p>
+</header>
+
+
+<!-- Floating Widget Section -->
+<div class="floating-widget">
+    <h2>Welcome Explorer 👋</h2>
+    <p style="font-size:18px; text-align:center;">
+        Discover destinations, get live weather insights, chat with AI,
+        and generate instant travel plans — all with a futuristic design.
+    </p>
+
+    <div class="features">
+	<a href="weather.html" style="text-decoration: none;"> 
+	<div class="feature-box">
+            <h3>🌦 Live Weather</h3>
+            <p>Real-time conditions for any destination.</p>
+        </div></a>
+
+        <div class="feature-box">
+            <h3>🤖 AI Chatbot</h3>
+            <p>Your personal travel advisor 24/7.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>🗺 Smart Itinerary</h3>
+            <p>Plans generated in seconds with weather adaptation.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>📍 Nearby Spots</h3>
+            <p>Explore local attractions with ease.</p>
+        </div>
+    </div>
+
+    <div style="text-align:center;">
+        <a href="#" class="btn">Start Planning</a>
+        <a href="#" class="btn">Chat with AI</a>
+    </div>
+	<div style="text-align:center; margin-top:10px;">
+   	    <a href="pronew.html" class="btn">👤 User Profile</a>
+	</div>
+</div>
+
+
+<footer>
+    © 2025 Voyage Vista • Modern AI Travel Assistant
+</footer>
+
+</body>
+</html>
